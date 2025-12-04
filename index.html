@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TransCity Winter HUD</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Playfair+Display:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="theme-warm">
+  <!-- Гирлянда сверху -->
+  <div class="garland garland--top">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- Гирлянда снизу -->
+  <div class="garland garland--bottom">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- Северное сияние -->
+  <div class="aurora"></div>
+
+    <!-- Северное сияние -->
+    <div class="aurora"></div>
+
+    <!-- Мелкие снежинки -->
+    <div class="snow snow--back"></div>
+    <div class="snow snow--front"></div>
+
+    <!-- Крупные падающие хлопья -->
+    <div class="snowfall snowfall--front" aria-hidden="true"></div>
+    <div class="snowfall snowfall--mid" aria-hidden="true"></div>
+
+    <main class="app-shell">
+
+      <!-- Навбар -->
+      <nav class="top-nav">
+        <div class="brand">
+          <span>TransCity</span>
+          <p>Зимний городской штаб · обновление 0.6</p>
+        </div>
+        <div class="nav-actions">
+          <button class="btn btn--ghost" id="musicToggle">
+            <span>Включить музыку</span>
+          </button>
+          <button class="btn btn--ghost" id="themeToggle">Сменить тему</button>
+          <button class="btn btn--primary" id="refreshButton">Обновить данные</button>
+        </div>
+      </nav>
+
+      <!-- Герой -->
+      <header class="hero">
+        <div class="hero__info">
+          <p class="hero__tag">Vol. 0.6 · Winter Remaster</p>
+          <h1 id="playerName">Player</h1>
+          <p class="hero__role" id="playerJob">Должность и роль появятся после синхронизации</p>
+        </div>
+
+        <div class="hero__meta">
+          <div class="badge badge--frost">
+            <span>Уровень</span>
+            <strong id="playerLevel">12</strong>
+          </div>
+          <div class="hero__mood">
+            <p id="heroMood">Город дремлет и ждёт салютов</p>
+            <small id="heroMotto">Соберите доход и оплатите налоги до боя курантов.</small>
+          </div>
+        </div>
+      </header>
+
+      <!-- Значки статуса -->
+      <section class="stat-row" id="statBadges"></section>
+
+      <!-- Основные панели -->
+      <section class="grid grid--status">
+        <article class="panel panel--frost" id="taxCard">
+          <h2>Налоговый счёт</h2>
+          <p class="value" id="taxAmount">0$</p>
+          <p class="note" id="taxNote">Налоговые таймеры обновятся после синхронизации.</p>
+        </article>
+
+        <article class="panel panel--frost" id="bankCard">
+          <h2>Вклад в банке</h2>
+          <p class="value" id="bankAmount">0$</p>
+          <p class="note" id="bankNote">+5% каждые сутки в онлайне.</p>
+        </article>
+
+        <article class="panel panel--frost" id="debtCard">
+          <h2>Кредиты и долги</h2>
+          <p class="value" id="debtAmount">0$</p>
+          <p class="note" id="debtNote">При просрочке имущество блокируется.</p>
+        </article>
+
+        <article class="panel panel--frost" id="cityCard">
+          <h2>Пульс города</h2>
+          <p class="value" id="cityMood">Готовимся к празднику</p>
+          <p class="note" id="cityNote">События и аукцион обновляются автоматически.</p>
+        </article>
+      </section>
+
+      <!-- Бизнес + Недвижимость -->
+      <section class="grid">
+        <article class="panel">
+          <header class="panel__header">
+            <div>
+              <p class="panel__eyebrow">Активы</p>
+              <h3>Бизнес-портфель</h3>
+            </div>
+          </header>
+          <div class="list" id="businessList"></div>
+        </article>
+
+        <article class="panel">
+          <header class="panel__header">
+            <div>
+              <p class="panel__eyebrow">Недвижимость</p>
+              <h3>Аренда и щиты</h3>
+            </div>
+          </header>
+          <div class="list" id="estateList"></div>
+        </article>
+      </section>
+
+      <!-- События и таймлайн -->
+      <section class="grid">
+        <article class="panel" id="eventsPanel">
+          <header class="panel__header">
+            <div>
+              <p class="panel__eyebrow">События</p>
+              <h3>Что происходит в городе</h3>
+            </div>
+          </header>
+          <ul class="feed" id="eventsList"></ul>
+        </article>
+
+        <article class="panel" id="timelinePanel">
+          <header class="panel__header">
+            <div>
+              <p class="panel__eyebrow">Сводка</p>
+              <h3>Городские сигналы</h3>
+            </div>
+          </header>
+          <ul class="timeline" id="timelineList"></ul>
+        </article>
+      </section>
+
+      <!-- Камин -->
+      <section class="ambient">
+        <div class="fireplace" aria-hidden="true">
+          <div class="fire"></div>
+        </div>
+        <p>HUD показывает только визуализацию. Все действия, налоги и уведомления остаются в Telegram-боте TransCity.</p>
+      </section>
+
+      <!-- Подвал -->
+      <footer class="footer">
+        <p>Последняя синхронизация: <span id="lastUpdated">—</span></p>
+        <p>TransCity Web HUD · 2025/2026 Holiday Edition</p>
+      </footer>
+    </main>
+
+    <!-- Лоадер -->
+    <div class="loader is-hidden" id="loader">
+      <div class="loader__ring"></div>
+      <p>Город синхронизирует данные...</p>
+    </div>
+
+    <!-- Приветственная модалка -->
+    <div class="modal-overlay" id="welcomeModal">
+      <div class="modal">
+        <p class="modal__eyebrow">Новогоднее дежурство</p>
+        <h2>Добро пожаловать в штаб TransCity</h2>
+        <p>Мы украсили интерфейс огнями и добавили плейлист. Включите музыку и следите за экономикой города.</p>
+        <button class="btn btn--primary" id="closeWelcome">Войти в интерфейс</button>
+      </div>
+    </div>
+
+    <!-- Аудио -->
+    <audio id="holidayAudio" loop preload="auto">
+      <source src="assets/snow.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Параметры -->
+    <script>
+      window.PLAYER_ID = window.PLAYER_ID || 2033598660;
+      window.WEBAPP_API = window.WEBAPP_API || "http://127.0.0.1:8000";
+    </script>
+
+    <!-- Основной скрипт -->
+    <script type="module" src="main.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="260" viewBox="0 0 1600 260">
+  <defs>
+    <linearGradient id="snowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.0"/>
+      <stop offset="25%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="1.0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- transparent background -->
+  <rect x="0" y="0" width="1600" height="260" fill="none"/>
+
+  <!-- main snow bank -->
+  <path d="
+    M -50 180
+    C 150 140, 350 210, 550 180
+    C 750 150, 950 220, 1150 185
+    C 1350 155, 1550 210, 1700 190
+    L 1700 300
+    L -50 300
+    Z"
+    fill="url(#snowGrad)"/>
+
+  <!-- small bumps / texture -->
+  <path d="M 100 190 C 140 180, 220 185, 260 200" stroke="rgba(209,213,219,0.8)" stroke-width="3" fill="none" />
+  <path d="M 420 195 C 470 180, 540 188, 590 205" stroke="rgba(209,213,219,0.8)" stroke-width="3" fill="none" />
+  <path d="M 760 190 C 820 175, 880 182, 940 200" stroke="rgba(209,213,219,0.8)" stroke-width="3" fill="none" />
+  <path d="M 1120 195 C 1180 180, 1260 188, 1320 205" stroke="rgba(209,213,219,0.8)" stroke-width="3" fill="none" />
+" />
+
+</svg>
